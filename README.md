@@ -14,6 +14,24 @@
 [Wiki→Возникающие-ошибки](https://github.com/mstyura/bsuir-diploma-latex/wiki/Возникающие-ошибки#scalable-cyrfonts-tex-on-ubuntu))
 
 ## Установка
+### Docker
+На DockerHub лежит образ со всем готовым.
+- пуллим image
+```bash
+docker pull sixnine/latex_bsuir
+```
+- поднимаем контейнер, монтируя репозиторий в контейнер:
+```bash
+docker run --name {имя контейнера} -v {путь к локальному репозиторию}:/latex -it sixnine/latex_bsuir
+```
+
+например,
+
+```bash
+docker run --name latex -v /Users/vadimkozlov/dev/latex_bsuir:/latex -it sixnine/latex_bsuir
+```
+- теперь можно собирать проект через make, подключаться к контейнеру из VSCode через [Dev Containers](https://github.com/Microsoft/vscode-remote-release), настраивать любимые расширения (Latex Workshop завести у меня не получилось, если получится - допиши в ридми, открой пулрик :) )
+
 ### Vagrant
 Если у вас возникли проблемы с установкой и настройкой латеха на Windows или Linux, то вы можете воспользоваться виртуальной машиной для vagrant, которая сразу готова к сборке проекта (предполагается использование scalable-cyrfonts-tex, а не pscyr).
 - установить vagrant (рекомендуем версию 1.7 или выше)
