@@ -8,7 +8,6 @@ endif
 PDFLATEX = pdflatex
 DIPLOMA_REPORT_PDF = diploma_report
 PRACTICE_REPORT_PDF = practice_report
-COURSE_REPORT_PDF = course_report
 TITLE_PDF = diploma_title_only
 TASK_PDF = diploma_task_only
 BIBTEX = bibtex
@@ -17,6 +16,10 @@ GREP = grep
 
 
 all: $(DIPLOMA_REPORT_PDF).pdf $(PRACTICE_REPORT_PDF).pdf $(TITLE_PDF).pdf $(TASK_PDF).pdf
+
+
+setup:
+	ln -s ../lib/* ./
 
 
 publish_to_dropbox: all
@@ -40,7 +43,6 @@ $(DIPLOMA_REPORT_PDF).pdf: *.tex
 	$(BIBTEX) $(DIPLOMA_REPORT_PDF).aux
 	$(PDFLATEX) $(DIPLOMA_REPORT_PDF)
 	$(PDFLATEX) $(DIPLOMA_REPORT_PDF)
-	cp $(DIPLOMA_REPORT_PDF).pdf ../example_diploma.pdf
 
 
 $(PRACTICE_REPORT_PDF).pdf: *.tex
@@ -48,15 +50,7 @@ $(PRACTICE_REPORT_PDF).pdf: *.tex
 	$(BIBTEX) $(PRACTICE_REPORT_PDF).aux
 	$(PDFLATEX) $(PRACTICE_REPORT_PDF)
 	$(PDFLATEX) $(PRACTICE_REPORT_PDF)
-	cp $(PRACTICE_REPORT_PDF).pdf ../example_practice.pdf
 
-
-$(COURSE_REPORT_PDF).pdf: *.tex
-	$(PDFLATEX) $(COURSE_REPORT_PDF)
-	$(BIBTEX) $(COURSE_REPORT_PDF).aux
-	$(PDFLATEX) $(COURSE_REPORT_PDF)
-	$(PDFLATEX) $(COURSE_REPORT_PDF)
-	cp $(COURSE_REPORT_PDF).pdf ../example_course_project.pdf
 
 $(TITLE_PDF).pdf: *.tex
 	$(PDFLATEX) $(TITLE_PDF)
@@ -70,5 +64,4 @@ cleanall: clean
 
 .PHONY: clean
 clean:
-	$(RM) *.aux *.log *.out *.toc *.gz *.gz\(busy\) *.blg *.bbl $(DIPLOMA_REPORT_PDF).pdf $(TASK_PDF).pdf $(TITLE_PDF).pdf $(PRACTICE_REPORT_PDF).pdf $(COURSE_REPORT_PDF).pdf
-
+	$(RM) *.aux *.log *.out *.toc *.gz *.gz\(busy\) *.blg *.bbl
