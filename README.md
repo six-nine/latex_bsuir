@@ -35,7 +35,7 @@ docker run --name latex -v /Users/vadimkozlov/dev/latex_bsuir:/latex -it sixnine
 
 ### Настройка Latex Workshop для VSCode
 
-Для того, чтобы настроить расширение Latex Workshop для VSCode, нужно в самом верху всех .tex файлов (кроме, быть может, файлов из папки lib) написать
+Для того, чтобы работала сборка в расширении [Latex Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) для VSCode, нужно в самом верху всех .tex файлов (кроме, быть может, файлов из папки lib) написать
 
 ```
 % !TEX root = <путь_к_главному_tex_файлу>
