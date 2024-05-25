@@ -30,7 +30,22 @@ docker run --name {имя контейнера} -v {путь к локально
 ```bash
 docker run --name latex -v /Users/vadimkozlov/dev/latex_bsuir:/latex -it sixnine/latex_bsuir
 ```
-- теперь можно собирать проект через make, подключаться к контейнеру из VSCode через [Dev Containers](https://github.com/Microsoft/vscode-remote-release), настраивать любимые расширения (Latex Workshop завести у меня не получилось, если получится - допиши в ридми, открой пулрик :) )
+
+- теперь можно собирать проект через make, подключаться к контейнеру из VSCode через [Dev Containers](https://github.com/Microsoft/vscode-remote-release), настраивать любимые расширения.
+
+### Настройка Latex Workshop для VSCode
+
+Для того, чтобы работала сборка в расширении [Latex Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) для VSCode, нужно в самом верху всех .tex файлов (кроме, быть может, файлов из папки lib) написать
+
+```
+% !TEX root = <путь_к_главному_tex_файлу>
+```
+
+Делается это для того, чтобы Latex Workshop понял, какой файл на самом деле нужно собирать. Например, если используется docker контейнер и собирается курсовая работа, надо прописать
+
+```
+% !TEX root = /latex/src/course/course_report.tex
+```
 
 ### Vagrant
 Если у вас возникли проблемы с установкой и настройкой латеха на Windows или Linux, то вы можете воспользоваться виртуальной машиной для vagrant, которая сразу готова к сборке проекта (предполагается использование scalable-cyrfonts-tex, а не pscyr).
